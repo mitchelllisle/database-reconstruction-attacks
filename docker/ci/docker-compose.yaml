@@ -2,7 +2,7 @@ version: '3'
 
 services:
   dra:
-    image: themattrix/tox
+    image: jupyter/scipy-notebook
     volumes:
       - ../../:/source
     env_file:
