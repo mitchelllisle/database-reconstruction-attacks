@@ -20,7 +20,7 @@ We will mainly use [Z3](https://github.com/Z3Prover/z3) for this.
 Imagine we have the following database that contains information for people within a certain geographic area
 (going forward we refer to this area as a **block**.
 
-We have *7* people in total in this block. Alongside <span style="color:#016FB9">**age**</span>. , we also have each resident's
+We have *7* people in total in this block. Alongside <span style="color:#016FB9">**age**</span>, we also have each resident's
 <span style="color:#FF9505">**smoking status**</span>, <span style="color:#DA3E52">**employment status**</span> and
 whether they are <span style="color:#6CC551">**married**</span> or not, we publish a variety of
 statistics. You have probably seen something similar in your countries census.
