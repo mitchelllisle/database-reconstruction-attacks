@@ -1,0 +1,4 @@
+pydantic
+z3-solver
+pipe
+pandas
