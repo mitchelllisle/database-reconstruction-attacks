@@ -1,19 +1,15 @@
 from math import floor
 
-import pandas as pd
 
-from dra.database import stats
-
-
-def test_marriages_count(marriages):
+def test_marriages_count(marriages, stats):
     assert len(marriages.married) == stats.B3.count
     assert len(marriages.single) > 0
     assert len(marriages.single) <= 3
 
 
-def test_marriages_mean(marriages):
+def test_marriages_mean(marriages, stats):
     assert floor(marriages.married.age.mean()) == stats.B3.mean
 
 
-def test_population_median(marriages: pd.DataFrame):
+def test_marriages_median(marriages, stats):
     assert floor(marriages.married.age.median()) == stats.B3.median

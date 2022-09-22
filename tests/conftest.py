@@ -4,7 +4,29 @@ import pandas as pd
 import pytest
 
 from dra.attack import DatabaseConstructionAttack
-from dra.database import stats
+from dra.datamodels import BlockStats
+
+
+class Args:
+    @property
+    def input(self) -> str:
+        return 'data/block-stats.csv'
+
+    @property
+    def solution(self) -> str:
+        return 'data/solution.csv'
+
+    @property
+    def output(self) -> str:
+        return 'data/reconstruction.csv'
+
+    @property
+    def min_age(self) -> int:
+        return 0
+
+    @property
+    def max_age(self) -> int:
+        return 115
 
 
 @dataclass
@@ -26,9 +48,20 @@ class EmploymentClasses:
 
 
 @pytest.fixture
-def dra() -> DatabaseConstructionAttack:
-    attack = DatabaseConstructionAttack(stats)
+def args():
+    return Args()
+
+
+@pytest.fixture
+def dra(args) -> DatabaseConstructionAttack:
+    attack = DatabaseConstructionAttack(stats_file=args.input, solutions_file=args.solution)
     return attack
+
+
+@pytest.fixture
+def stats(args) -> BlockStats:
+    attack = DatabaseConstructionAttack(stats_file=args.input, solutions_file=args.solution)
+    return attack.stats
 
 
 @pytest.fixture

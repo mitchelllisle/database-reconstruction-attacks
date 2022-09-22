@@ -1,5 +1,6 @@
 from itertools import pairwise
 
+import numpy as np
 import pandas as pd
 import z3
 from pipe import map
@@ -36,13 +37,15 @@ class DatabaseConstructionAttack:
     > 👾 One additional piece of logic we know is that any statistics with a count of less than 3 is suppressed
     """
 
-    def __init__(self, stats: BlockStats, min_age: int = 0, max_age: int = 115):
-        self.stats = stats
+    def __init__(self, stats_file: str, solutions_file: str, min_age: int = 0, max_age: int = 115):
+        self.stats: BlockStats = self.read_block_stats(stats_file)
+        self.solution: pd.DataFrame = pd.read_csv(solutions_file)
         self.solver = z3.Solver()
         self.min_age = min_age
         self.max_age = max_age
         self.population = range(self.stats.A1.count if self.stats.A1.count is not None else 0)
         self.status: z3.CheckSatResult | None = None
+        self.output: pd.DataFrame | None = None
 
         # Variables
         self.ages: list[z3.IntSort] = z3.IntVector('ages', self.stats.A1.count)
@@ -57,6 +60,11 @@ class DatabaseConstructionAttack:
         self.employed: list[z3.BoolSort] = z3.BoolVector('employed', self.stats.A1.count)
 
         self.model: z3.ModelRef | None = None
+
+    @staticmethod
+    def read_block_stats(file: str) -> BlockStats:
+        data = pd.read_csv(file)
+        return BlockStats(**data.replace({np.nan: None}).set_index('statistic').to_dict(orient='index'))
 
     def pairwise_sort_constraint(self, variables: list[z3.Sort]) -> None:
         list(pairwise(variables) | map(lambda pair: self.solver.add(pair[0] <= pair[1])))
@@ -388,10 +396,10 @@ class DatabaseConstructionAttack:
         elif stat.count == 3:
             self.solver.add((temp_class_ages[1]) == stat.median)
 
-    def check_accuracy(self, output: pd.DataFrame, solution: pd.DataFrame) -> float:
+    def check_accuracy(self) -> float:
         match, non_match = 0, 0
-        computed = [tuple(v.values()) for v in output.to_dict(orient='records')]
-        original = [tuple(v.values()) for v in solution.to_dict(orient='records')]
+        computed = [tuple(v.values()) for v in self.output.to_dict(orient='records')]  # type: ignore
+        original = [tuple(v.values()) for v in self.solution.to_dict(orient='records')]  # type: ignore
 
         to_check = [list(zip(computed[i], original[i])) for i in self.population]
         for items in to_check:
@@ -440,5 +448,6 @@ class DatabaseConstructionAttack:
         self.status = self.solver.check()
         if self.status == z3.sat:
             self.model = self.solver.model()
-            return self.model_as_dataframe()
+            self.output = self.model_as_dataframe()
+            return self.output
         raise UnsatisfiableModel('No valid model found')

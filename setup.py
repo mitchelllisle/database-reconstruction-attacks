@@ -27,4 +27,9 @@ setup(
     url='https://github.com/mitch-tw/dra',
     version='0.1.0',
     zip_safe=False,
+    entry_points={
+        'console_scripts': [
+            'dra=dra.__main__:main',
+        ],
+    },
 )
