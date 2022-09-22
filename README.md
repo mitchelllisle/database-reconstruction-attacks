@@ -31,3 +31,6 @@ statistics. You have probably seen something similar in your countries census.
  - Two <span style="color:#DA3E52">**employment statuses**</span>;  Unemployed (**False**) or Employed (**True**)
 
 > 👾 One additional piece of logic we know is that any statistics with a count of less than 3 is suppressed
+
+## Usage
+To run 
