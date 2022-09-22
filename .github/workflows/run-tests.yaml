@@ -1,0 +1,12 @@
+name: build-test
+
+on:
+  push
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run containers
+      run: docker-compose -f docker/ci/docker-compose.yaml up --abort-on-container-exit
