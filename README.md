@@ -16,16 +16,18 @@ we will take a simple example and re-create the database from nothing but aggreg
 
 We will mainly use [Z3](https://github.com/Z3Prover/z3) for this.
 
+
 Imagine we have the following database that contains information for people within a certain geographic area
 (going forward we refer to this area as a **block**.
 
-We have *7* people in total in this block. Alongside **age**, we also have each resident's
-**smoking status**, **employment status** and whether they are **married** or not, we publish a variety of
+We have *7* people in total in this block. Alongside <span style="color:#016FB9">**age**</span>. , we also have each resident's
+<span style="color:#FF9505">**smoking status**</span>, <span style="color:#DA3E52">**employment status**</span> and
+whether they are <span style="color:#6CC551">**married**</span> or not, we publish a variety of
 statistics. You have probably seen something similar in your countries census.
 
 > 📓 To simplify the example, this fictional world has:
- - Two marriage statuses; Married (**True**) or Single (**False**)
- - Two smoking statuses; Non-Smoker (**False**) or Smoker (**True**)
- - Two employment statuses;  Unemployed (**False**) or Employed (**True**)
+ - Two <span style="color:#6CC551">**marriage**</span> statuses; Married (**True**) or Single (**False**)
+ - Two <span style="color:#FF9505">**smoking**</span> statuses; Non-Smoker (**False**) or Smoker (**True**)
+ - Two <span style="color:#DA3E52">**employment statuses**</span>;  Unemployed (**False**) or Employed (**True**)
 
 > 👾 One additional piece of logic we know is that any statistics with a count of less than 3 is suppressed
