@@ -43,14 +43,14 @@ pip install .
 ## Usage
 To run, you can use thte `dra` command after pip installing. The positional args are required:
 
-input file: the file to pass in with the block stats
-solution: the solution file which is what the original database. the input file stats are derived from this file
-output file: the file to create for the re-constructed database to compare with the solution file
+1. input file: the file to pass in with the block stats 
+2. solution: the solution file which is what the original database. the input file stats are derived from this file 
+3. output file: the file to create for the re-constructed database to compare with the solution file
 
 optional args:
 
---min-age: the minimum age constraint, default: 0
---max-age: the maximum age constraint, default: 115
+- --min-age: the minimum age constraint, default: 0 
+- --max-age: the maximum age constraint, default: 115
 
 ```shell
 dra data/block-stats.csv data/solution.csv data/reconstruction.csv
