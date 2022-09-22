@@ -21,7 +21,7 @@ RUN pip install virtualenv && \
     virtualenv venv && \
     source venv/bin/activate
 
-
+RUN make install-e
 RUN make install-all
 
 USER thrillhouse
