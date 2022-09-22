@@ -32,9 +32,59 @@ statistics. You have probably seen something similar in your countries census.
 
 > 👾 One additional piece of logic we know is that any statistics with a count of less than 3 is suppressed
 
-## Usage
-To run 
 
-``shell
+## Install
+You can run this application through a cli command. To install, you can run the following for inside the parent dir
+
+```shell
+pip install .
+```
+
+## Usage
+To run, you can use thte `dra` command after pip installing. The positional args are required:
+
+input file: the file to pass in with the block stats
+solution: the solution file which is what the original database. the input file stats are derived from this file
+output file: the file to create for the re-constructed database to compare with the solution file
+
+optional args:
+
+--min-age: the minimum age constraint, default: 0
+--max-age: the maximum age constraint, default: 115
+
+```shell
 dra data/block-stats.csv data/solution.csv data/reconstruction.csv
-``
+```
+
+The logs will look something like this (Note the accuracy being reported when compared to the solution)
+
+```shell
+INFO:dra.logger:starting DatabaseReconstructionAttack runner...
+INFO:dra.logger:running DRA...
+INFO:dra.logger:DRA complete. Accuracy achieved 93%
+INFO:dra.logger:reconstructed database: data/reconstruction.csv
+```
+
+The reconstructed database will look something like this:
+```
+age,married,smoker,employed
+9,False,False,False
+20,False,True,True
+24,False,False,True
+30,True,True,True
+36,True,False,False
+66,True,False,False
+84,True,True,False
+```
+
+The original database:
+```
+age,married,smoker,employed
+8,False,False,False
+18,False,True,True
+24,False,False,True
+30,True,True,True
+36,True,False,False
+66,True,False,False
+84,True,True,False
+```
