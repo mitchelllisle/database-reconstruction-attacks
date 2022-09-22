@@ -1,12 +1,12 @@
 import pytest
 
-from dra.__main__ import main
+from dra.__main__ import run
 from dra.attack import DatabaseConstructionAttack
 from dra.errors import UnsatisfiableModel
 
 
 def test_main(args):
-    main(args)
+    run(args)
 
 
 def test_output(dra, model):
