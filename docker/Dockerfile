@@ -2,8 +2,6 @@ FROM jupyter/scipy-notebook as test
 
 USER root
 RUN mkdir -p /source
-RUN useradd -ms /bin/bash -g root thrillhouse
-RUN chown thrillhouse /source
 
 COPY . /source
 
@@ -23,7 +21,5 @@ RUN pip install virtualenv && \
 
 RUN make install-e
 RUN make install-all
-
-USER thrillhouse
 
 ENTRYPOINT ["make", "test"]

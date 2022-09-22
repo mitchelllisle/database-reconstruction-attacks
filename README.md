@@ -34,3 +34,7 @@ statistics. You have probably seen something similar in your countries census.
 
 ## Usage
 To run 
+
+``shell
+dra data/block-stats.csv data/solution.csv data/reconstruction.csv
+``
