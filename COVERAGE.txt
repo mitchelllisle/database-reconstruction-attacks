@@ -2,9 +2,9 @@ Name                    Stmts   Miss  Cover
 -------------------------------------------
 src/dra/__init__.py         3      0   100%
 src/dra/__main__.py        22     10    55%
-src/dra/attack.py         125      4    97%
+src/dra/attack.py         100      0   100%
 src/dra/datamodels.py      15      0   100%
 src/dra/errors.py           1      0   100%
 src/dra/logger.py           4      0   100%
 -------------------------------------------
-TOTAL                     170     14    92%
+TOTAL                     145     10    93%

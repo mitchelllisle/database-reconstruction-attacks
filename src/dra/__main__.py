@@ -1,6 +1,6 @@
 import argparse
 
-from dra.attack import DatabaseConstructionAttack
+from dra.attack import DatabaseReconstructionAttack
 from dra.logger import logger
 
 
@@ -19,8 +19,8 @@ def main():
 
 def run(args: argparse.Namespace):
     logger.info('running DRA...')
-    attack = DatabaseConstructionAttack(
-        stats_file=args.input, solutions_file=args.solution, min_age=args.min_age, max_age=args.max_age
+    attack = DatabaseReconstructionAttack(
+        stats_file=args.input, database_file=args.database, min_age=args.min_age, max_age=args.max_age
     )
     model = attack.run()
     model.to_csv(args.output, index=False)

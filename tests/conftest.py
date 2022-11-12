@@ -3,7 +3,7 @@ from dataclasses import dataclass
 import pandas as pd
 import pytest
 
-from dra.attack import DatabaseConstructionAttack
+from dra.attack import DatabaseReconstructionAttack
 from dra.datamodels import BlockStats
 
 
@@ -13,8 +13,8 @@ class Args:
         return 'data/block-stats.csv'
 
     @property
-    def solution(self) -> str:
-        return 'data/solution.csv'
+    def database(self) -> str:
+        return 'data/database.csv'
 
     @property
     def output(self) -> str:
@@ -53,14 +53,14 @@ def args():
 
 
 @pytest.fixture
-def dra(args) -> DatabaseConstructionAttack:
-    attack = DatabaseConstructionAttack(stats_file=args.input, solutions_file=args.solution)
+def dra(args) -> DatabaseReconstructionAttack:
+    attack = DatabaseReconstructionAttack(stats_file=args.input, database_file=args.database)
     return attack
 
 
 @pytest.fixture
 def stats(args) -> BlockStats:
-    attack = DatabaseConstructionAttack(stats_file=args.input, solutions_file=args.solution)
+    attack = DatabaseReconstructionAttack(stats_file=args.input, database_file=args.database)
     return attack.stats
 
 
