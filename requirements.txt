@@ -1,4 +1,4 @@
-pydantic
+pydantic==1.10.2
 z3-solver==4.11.2.0
-pipe
-pandas
+pipe==2.0
+pandas==1.5.1
