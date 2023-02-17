@@ -1,4 +1,4 @@
 pydantic
-z3-solver
+z3-solver==4.11.2.0
 pipe
 pandas
