@@ -2,3 +2,4 @@ pydantic==1.10.2
 z3-solver==4.11.2.0
 pipe==2.0
 pandas==1.5.1
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
