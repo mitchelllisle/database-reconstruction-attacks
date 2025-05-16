@@ -9,6 +9,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up Docker
-      uses: docker/setup-docker@v2
+      uses: docker/setup-docker@v3
     - name: Run containers
       run: docker-compose -f docker/docker-compose.yaml up --abort-on-container-exit
